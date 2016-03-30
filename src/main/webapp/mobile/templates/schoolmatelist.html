@@ -1,0 +1,157 @@
+<ion-view view-title="校友">
+    <ion-nav-buttons class="nav-title-slide-ios7 bar-assertive" side="left">
+        <a class="button button-clear icon light" href="#home"><i class="ion-chevron-left"></i>&nbsp;</a>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+        <a class="button button-clear" ng-click="openModal()">搜索</a>
+    </ion-nav-buttons>
+    <ion-tabs class="no-header item-divider tabs-striped tabs-top school-tabs">
+        <ion-tab title="附近校友" on-select="on_select('location')">
+            <ion-view>
+                <ion-content class="schoolmale-wrap">
+                    <ion-refresher
+                            pulling-text="下拉刷新..."
+                            on-refresh="doRefresh()">
+                    </ion-refresher>
+
+                    <ion-list>
+                        <ion-item class="item-remove-animate item-icon-right" ng-repeat="mate in news" type=""
+                                  href="#/app/schoolmatelist/{{mate.phone}}">
+
+                            <img class="male-head default-header" style="width:60pt;height:45pt;float:left"
+                                 ng-src="{{!mate.headpic ? 'img/default-header.png':server_pic + mate.headpic}}">
+
+                            <div style="margin-left:68pt;width:80%" class="male-info-wrap">
+                                <span class="item-note ago distance"
+                                      style="float:right;margin-right:0pt">{{getDistance(mate.distance)}}</span>
+
+                                <h2 style="margin-top:0pt" class="">{{mate.name||"暂无"}}</h2>
+
+                                <p class="school-item">
+                                    <span><img src="img/tag_icon.png" alt=""/>{{mate.school||"学校暂无"}}</span>
+                                    <span><img src="img/text_icon.png" alt=""/>{{mate.grade||'年级暂无'}}</span>
+                                </p>
+                                <p class="school-item">
+                                    <span><img src="img/home_icon.png" alt=""/>{{mate.company||"公司暂无"}}</span>
+                                </p>
+
+                                <p class="school-item">
+                                <span><img src="img/star_icon.png" alt=""/>{{mate.title||'职位暂无'}}</span>
+                                </p>
+
+                            </div>
+                        </ion-item>
+                    </ion-list>
+                    <ion-infinite-scroll on-infinite="load_more();" distance="5%" ng-if="noMoreItemsAvailable">
+                    </ion-infinite-scroll>
+                </ion-content>
+
+            </ion-view>
+        </ion-tab>
+        <ion-tab title="全部校友" on-select="on_select('username')">
+            <ion-view>
+                <ion-content class="schoolmale-wrap">
+                    <ion-refresher
+                            pulling-text="下拉刷新..."
+                            on-refresh="doRefresh()">
+                    </ion-refresher>
+
+                    <ion-list>
+                        <ion-item class="item-remove-animate item-icon-right" ng-repeat="mate in news" type=""
+                                  href="#/app/schoolmatelist/{{mate.phone}}">
+
+                            <img class="male-head default-header" style="width:60pt;height:60pt;float:left"
+                                 ng-src="{{!mate.headpic ? 'img/default-header.png':server_pic + mate.headpic}}">
+
+                            <div style="margin-left:68pt;width:80%" class="male-info-wrap">
+                                <span class="item-note ago distance"
+                                      style="float:right;margin-right:0pt">{{getDistance(mate.distance)}}</span>
+
+                                <h2 style="margin-top:0pt" class="">{{mate.name||"暂无"}}</h2>
+                                <p class="school-item">
+                                    <span><img src="img/tag_icon.png" alt=""/>{{mate.school||"学校暂无"}}</span>
+                                    <span><img src="img/text_icon.png" alt=""/>{{mate.grade||'年级暂无'}}</span>
+                                </p>
+                                <p class="school-item">
+                                    <span><img src="img/home_icon.png" alt=""/>{{mate.company||"公司暂无"}}</span>
+                                </p>
+                                <p class="school-item">
+                                    <span><img src="img/star_icon.png" alt=""/>{{mate.title||'职位暂无'}}</span>
+                                </p>
+
+                            </div>
+                        </ion-item>
+                    </ion-list>
+                    <ion-infinite-scroll on-infinite="load_more();" distance="5%" ng-if="noMoreItemsAvailable">
+                    </ion-infinite-scroll>
+                </ion-content>
+
+            </ion-view>
+        </ion-tab>
+        <script id="my-modal.html" type="text/ng-template">
+            <ion-modal-view>
+                <ion-header-bar class="bar-bg">
+                    <h1 class="title">查询条件</h1>
+                    <a class="button button-clear" ng-click="closeModal();">关闭</a>
+                </ion-header-bar>
+                <ion-content class="school-search-modal">
+                    <div class="list" style="margin-top:10pt">
+
+                        <label class="item item-input">
+                            <span class="input-label">姓名:</span>
+                            <input type="text" placeholder="姓名" id="usename" ng-model="searchData.realName">
+                        </label>
+
+
+                        <div class="item" style="padding: 5px 16px;">
+                            <span class="input-label" style="display: inline-block">性别:</span>
+                            <label class="fix-margin-r10"><input type="radio" value="1" name="user-sex" ng-model="searchData.sex"/>男</label>
+                            <label><input type="radio" value="0" name="user-sex" ng-model="searchData.sex"/>女</label>
+
+                        </div>
+
+
+                        <label class="item item-input item-select">
+                            <span class="input-label">
+                                学校
+                            </span>
+                            <select ng-model="searchData.school">
+                                <option selected>选择学校</option>
+                                <option>上海交大</option>
+                                <option>西安交大</option>
+                                <option>西南交大</option>
+                                <option>北京交大</option>
+                                <option>大连交大</option>
+                                <option>兰州交大</option>
+                                <option>华东交大</option>
+                                <option>重庆交大</option>
+                            </select>
+                        </label>
+
+
+                        <label class="item item-input">
+                            <span class="input-label">院系:</span>
+                            <input type="text" placeholder="院系" id="usename" ng-model="searchData.department">
+                        </label>
+
+
+                        <label class="item item-input">
+                            <span class="input-label">年级:</span>
+                            <input type="text" placeholder="年级" max-length="4" id="usename"
+                                   ng-model="searchData.grade">
+                        </label>
+
+
+                        <div class="padding">
+                            <button class="button button-block button-bg" ng-click="searchBtn()">确定</button>
+                        </div>
+
+
+                    </div>
+
+                </ion-content>
+            </ion-modal-view>
+        </script>
+    </ion-tabs>
+
+</ion-view>

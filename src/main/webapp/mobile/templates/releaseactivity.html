@@ -1,0 +1,169 @@
+<ion-view view-title="发布活动">
+    <ion-nav-buttons class="nav-title-slide-ios7 bar-assertive" side="left">
+        <a class="button button-clear icon light" ng-click="goPreView()"><i class="ion-chevron-left"></i>&nbsp;</a>
+    </ion-nav-buttons>
+    <ion-content>
+        <label class="item item-input">
+            标题
+            <span class="red-font">*
+            </span>
+            <input style="padding-left:10pt" type="text" placeholder="输入标题" ng-model="dataActivity.title">
+        </label>
+        <img id="img" height="240pt" class="full-image" src="{{imgSrc}}">
+        <div class="release-activity" style="margin:10pt">
+            <div class="" style="margin:10pt">
+                <button href="javascript:;" class="full-image button-bg" style="position: relative;
+                        display: block;
+                        background: none;
+                        border-radius: 3px;
+                        padding: 10px;
+                        overflow: hidden;
+                        text-decoration: none;
+                        text-indent: 0;
+                        text-align: center;
+                        font-size: 16px;">
+                    点击修改图片
+                    <input id="upimg" ngf-select="uploadFiles($file)" class="ui-form-file" type="file" name="imgFile"
+                           accept="image/*" style=" position: absolute;
+                            font-size: 100px;
+                            right: 0;
+                            top: 0;
+                            opacity: 0">
+                </button>
+            </div>
+
+            <div class="date-time-wrap item">
+                <label class="item-input">
+                    <span>
+                            举办时间
+                        <span class="red-font">*
+                        </span>
+                    </span>
+                    <ionic-datepicker input-obj="startDatePicker">
+                        <button  class="button-clear small" style="padding-left:-10pt" ng-model="dataActivity.startDate">
+                            {{dataActivity.startDate==undefined?"请输入日期":dataActivity.startDate | date: 'yyyy-MM-dd'}}
+                        </button>
+                    </ionic-datepicker>
+
+                </label>
+                <label class="item-input">
+                    <ionic-timepicker input-obj="startTimePicker">
+                        <button  class="button-clear" style="padding-left:-10pt" ng-model="dataActivity.startTime">
+                            {{dataActivity.startTime==undefined?"请输入时间":dataActivity.startTime | date: 'HH:mm:ss'}}
+                        </button>
+                    </ionic-timepicker>
+                </label>
+            </div>
+
+
+            <div class="date-time-wrap item">
+                <label class="item-input">
+                    <span>
+                            结束时间
+                        <span class="red-font">*
+                        </span>
+                    </span>
+                    <ionic-datepicker input-obj="endDatePicker">
+                        <!--<input style="padding-left:10pt" type="text" placeholder="输入日期" ng-model="dataActivity.endDate">-->
+                        <button  class="button-clear small" style="padding-left:-10pt" ng-model="dataActivity.endDate">
+                            {{dataActivity.endDate==undefined?"请输入日期":dataActivity.endDate}}
+                        </button>
+                    </ionic-datepicker>
+
+                </label>
+                <label class="item-input">
+                    <ionic-timepicker input-obj="endTimePicker">
+                        <button  class="button-clear" style="padding-left:-10pt" ng-model="dataActivity.endTime">
+                            {{dataActivity.endTime==undefined?"请输入时间":dataActivity.endTime}}
+                        </button>
+                    </ionic-timepicker>
+
+                </label>
+            </div>
+
+            <div class="date-time-wrap item">
+                <label class="item-input no-padding">
+                        <span class="small-font">
+                            报名截止时间
+                            <span class="red-font">*</span>
+                        </span>
+                    <ionic-datepicker input-obj="closeDatePicker">
+                        <!--<input style="padding-left:10pt" type="text" placeholder="输入日期"-->
+                        <!--ng-model="dataActivity.closeDate">-->
+                        <button  class="button-clear small" style="padding-left:-10pt" ng-model="dataActivity.closeDate">
+                            {{dataActivity.closeDate==undefined?"请输入日期":dataActivity.closeDate}}
+                        </button>
+                    </ionic-datepicker>
+
+                </label>
+                <label class="item-input">
+                    <ionic-timepicker input-obj="closeTimePicker">
+                        <!--<input style="padding-left:10pt" type="text" placeholder="输入时间"-->
+                        <!--ng-model="dataActivity.closeTime">-->
+                        <button  class="button-clear" style="padding-left:-10pt" ng-model="dataActivity.closeTime">
+                            {{dataActivity.closeTime==undefined?"请输入时间":dataActivity.closeTime}}
+                        </button>
+                    </ionic-timepicker>
+                </label>
+            </div>
+
+
+            <label class="item item-input">
+                <span class="form-input-title">联系人 <span class="red-font">*</span></span>
+
+                <input style="padding-left:10pt" type="text" placeholder="联系人" ng-model="dataActivity.contactMan">
+            </label>
+            <label class="item item-input">
+                <span class="form-input-title">
+                电话<span class="red-font">*</span>
+                </span>
+                <input style="padding-left:10pt" type="number" placeholder="电话" ng-model="dataActivity.contactPhone">
+            </label>
+            <label class="item item-input">
+                <span class="form-input-title">
+                E-mail
+                </span>
+                <input style="padding-left:10pt" type="text" placeholder="e-mail" ng-model="dataActivity.contactEmail">
+            </label>
+            <label class="item item-input">
+                <span class="form-input-title">
+                人数上限<span class="red-font">*</span>
+                </span>
+                <input style="padding-left:10pt" type="number" placeholder="人数上限" ng-model="dataActivity.personLimit">
+            </label>
+
+
+            <label class="item item-input">
+                <span class="form-input-title">
+                举办地址<span class="red-font">*</span>
+                </span>
+                <input style="margin-left:10pt" type="text" placeholder="地址" ng-model="dataActivity.address">
+            </label>
+
+            <div class="event-input-wrap">
+                <p>活动简介</p>
+                <textarea class="report-content" placeholder="200字以内" ng-model="dataActivity.activityDesc"></textarea>
+            </div>
+            <div class="event-input-wrap">
+                <p>核心话题</p>
+                <textarea class="report-content" placeholder="200字以内" ng-model="dataActivity.topic"></textarea>
+            </div>
+
+            <div class="event-input-wrap">
+                <p>参与费用</p>
+                <textarea class="report-content" placeholder="200字以内" ng-model="dataActivity.joinFee"></textarea>
+
+            </div>
+            <div class="event-input-wrap">
+                <p>其他说明</p>
+                <textarea class="report-content" placeholder="200字以内" ng-model="dataActivity.otherInfo"></textarea>
+
+            </div>
+
+            <a style="margin:20px;margin-bottom:20px;" class="light button button-block button-bg"
+               ng-click="goSubmit(1)">立即发布</a>
+            <br>
+        </div>
+    </ion-content>
+</ion-view>
+

@@ -1,0 +1,51 @@
+<ion-modal-view ng-controller="SchoolmateDetailController">
+  <ion-header-bar class="bar-bg">
+    <button class="button button-clear" ng-click="cancel()">返回</button>
+    <h1 class="title">{{mate.alumnus.realName}}</h1>
+  </ion-header-bar>
+  <ion-content>
+    <div style="width:100%;background-image:url('img/index-back.png'); background-size:100% 100%;">
+      <br/>
+      <br/>
+
+      <div align="center" class="light">
+
+        <img height=80pt width=80pt style="border-radius:40pt"
+             ng-src={{server_pic}}{{mate.alumnus.headPicPath}}>
+
+        <div style="text-align:center">
+          <img style="padding-right:2pt" width="14pt" src="img/star_icon.png">{{mate.alumnus.title}}
+          <span class="padding">{{mate.alumnus.realName}} ({{mate.alumnus.enRealName}})</span>
+          <a class=" {{mate.alumnus.sex==0?'ion-female':'ion-male'}}"></a>
+
+          {{mate.alumnus.sex==0?" 女":" 男"}}
+        </div>
+        <br/></div>
+    </div>
+
+    <div class="item " style="margin-top:10pt;padding-left:20pt">
+            <span class="item-note ago" style="float:left;"> <img style="padding-right:2pt" width="16pt"
+                                                                  src="img/tag_icon.png">{{mate.alumnus.school}}
+            <img style="padding-right:2pt;margin-left:10pt" width="14pt" src="img/text_icon.png">{{mate.alumnus.grade}}</span>
+
+            <span class="item-note ago" style="float:left;width:100%"><img style="padding-right:2pt;margin-top:3pt"
+                                                                           width="16pt" src="img/home_icon.png">{{mate.alumnus.company}}</span>
+            <span class="item-note ago" style="float:left;width:100%"><img style="padding-right:2pt;margin-top:3pt"
+                                                                           width="18pt" src="img/phone-litter.png">电话: {{mate.alumnus.phone}}</span>
+            <span class="item-note ago" style="float:left;width:100%"><img style="padding-right:2pt;margin-top:5pt"
+                                                                           width="18pt" src="img/email-litter.png">邮箱: {{mate.alumnus.email}}</span>
+            <span class="item-note ago" style="float:left;width:100%"><img style="padding-right:2pt;margin-top:5pt"
+                                                                           width="18pt" src="img/chart-litter.png">微信: {{mate.alumnus.weixin}}</span>
+
+
+    </div>
+
+    <div class=" " style="padding:10pt;height:100%">
+      <a ng-click="sendMessage()" style="margin-top:20px;margin-bottom:20px;" class=" button button-block button-bg"
+         href="#/app/chatlist/{{mate.alumnus.phone}}/{{mate.alumnus.realName}}">发消息</a>
+      <!--<a style="margin-top:20px;margin-bottom:20px;" class=" button button-block" href="#/app/report">举报 </a>-->
+
+
+    </div>
+  </ion-content>
+</ion-modal-view>

@@ -1,0 +1,138 @@
+<ion-view view-title='资讯详情' cache-view='false'>
+    <ion-nav-buttons class="nav-title-slide-ios7 bar-assertive" side="left">
+        <a class="button button-clear icon light" ng-click="goPreView()"><i class="ion-chevron-left"></i>&nbsp;</a>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+        <a class="button button-icon icon  light" href="#/app/report/{{news.id}}/{{news.title}}/资讯">举报</a>
+    </ion-nav-buttons>
+
+    <ion-content class="has-header im-content event-list-wrap">
+        <div class="event-header padding item-avatar">
+            <h4 class="title">{{news.title}}</h4>
+        </div>
+        <div class="user-info-wrap item item-avatar">
+            <img src={{server_pic}}{{news.createUser.alumnus.headPicPath}}>
+            <a class="blue" href="#/app/schoolmatelist/{{news.createUser.alumnus.phone}}" style="text-decoration:none">
+                {{news.createUser.alumnus.realName}}
+            </a>
+
+            <div>
+
+                <p style="float:left;">{{news.createTime}}</p>
+
+                <p class="blue" style="float:right;">{{news.pv}}人浏览</p>
+            </div>
+        </div>
+
+
+        <div class="padding event-img">
+            <img width="100%" height="200pt" src={{server_pic}}{{news.picPath}}>
+
+            <div class="light-color">
+                <pre>{{news.content}}
+                </pre>
+            </div>
+        </div>
+
+        <ion-list class="replies">
+            <ion-item class=" item-avatar" ng-click="showPopup(1)" ng-repeat="comment in comments">
+                <img ng-src={{server_pic}}{{comment.commentUser.alumnus.headPicPath}} reset-img>
+                <p>
+                    <a href="#/app/schoolmatelist/{{comment.commentUser.alumnus.phone}}" style="text-decoration:none"
+                       id="reply">
+                        {{comment.commentUser.alumnus.realName}}
+                    </a>
+                    <span class="item-note">{{comment.createTime}}
+                    </span>
+                    <span class="item-note cnode" ng-if="reply.ups.length > 0">
+                                            </span>
+                </p>
+                <div style="color:#036699" ng-if="comment.parentNewsCmt!=undefined">@{{comment.parentNewsCmt.commentUser.alumnus.realName}}</div>
+                <div class="reply-content" style="white-space: initial;" ng-bind-html="comment.content"></div>
+
+                <!--<div class="reply-content" ng-bind-html="comment.content"></div>-->
+                <div class="">
+                    <!--<a class="button-small button-block" style="display:inline;text-decoration:none"-->
+                    <!--href="#/app/report">-->
+                    <!--&lt;!&ndash;                                <i class="icon ion-share"></i>&ndash;&gt;-->
+                    <!--举报-->
+                    <!--</a>-->
+
+                    <a class="tab-item" style="float:right;" ng-click="saveReplyOther(comment.id,comment.commentUser.id)">
+                        回复
+                        <!--                                ({{comment.subNewsCmt.length>0?comment.subNewsCmt.length:0}})-->
+                    </a>
+                    <a class="tab-item" style="float:right;margin-right:10pt" ng-click="saveLike(comment.id)">
+                        <img height="12pt" src="img/heart-red.png">
+                        {{comment.likeCount}}
+                    </a>
+                </div>
+                <div class="item item-avatar" ng-click="showPopup(1)" ng-repeat="subNewsCmt in comment.subNewsCmt"
+                     style="margin-left:-20pt;border:0">
+                    <img ng-src={{server_pic}}{{subNewsCmt.commentUser.alumnus.headPicPath}} reset-img>
+
+                    <p>
+
+                        <a href="#/app/schoolmatelist/{{subNewsCmt.commentUser.alumnus.phone}}"
+                           style="text-decoration:none" id="reply">
+                            {{subNewsCmt.commentUser.alumnus.realName}}
+                        </a>
+                                <span class="item-note">{{subNewsCmt.createTime}}
+                                </span>
+                                <span class="item-note cnode" ng-if="reply.ups.length > 0">
+                                    <!--                        <i class="icon ion-thumbsup"></i> {{reply.ups.length}} &nbsp;-->
+                                                        </span>
+
+                    </p>
+
+                    <div class="reply-content" ng-bind-html="subNewsCmt.content"></div>
+                    <div class="">
+                        <a class="button-small button-block" style="display:inline;" href="#/app/report">
+                            举报
+                        </a>
+
+                        <a class="tab-item" style="float:right;" ng-click="saveReplyOther(subNewsCmt.id)">
+                            回复
+                            <!--                                            ({{subNewsCmt.subNewsCmt.length}})-->
+                        </a>
+                        <a class="tab-item" style="float:right;margin-right:20pt" ng-click="saveLike(subNewsCmt.id)">
+                            <img height="12pt" src="img/heart-red.png">
+                            {{subNewsCmt.likeCount}}
+
+                        </a>
+                    </div>
+
+                </div>
+
+
+            </ion-item>
+        </ion-list>
+        <br/>
+        <br/>
+
+
+    </ion-content>
+
+    <!--<ion-footer-bar keyboard-attach align-title="left" class="bar-light reply-new">-->
+    <!--<label class="item-input-wrapper">-->
+    <!--<input type="text" style="width=" 100%" placeholder="回复" ng-model="replyData.content">-->
+    <!--</label>-->
+    <!--<button class="button button-small button-positive" ng-click="saveReply(1)"-->
+    <!--ng-class="{'disabled':replyData.content == ''}">-->
+    <!--提交-->
+    <!--</button>-->
+    <!--</ion-footer-bar>-->
+
+    <div class="missfreshim footer" style="display: block">
+        <div class="input">
+            <div class="write">
+                <i class="icon ion-edit"></i>
+                <input placeholder="此处留言" type="text" ng-model="replyData.content"/>
+            </div>
+            <div class="options">
+                <button class="send button button-clear" ng-class="{'disabled':replyData.content == ''||replyData.content == undefined}" ng-click="saveReply(1)">发送</button>
+            </div>
+        </div>
+    </div>
+
+</ion-view>

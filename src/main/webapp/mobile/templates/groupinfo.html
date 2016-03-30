@@ -1,0 +1,56 @@
+<ion-view view-title="" cache-view='false'>
+  <ion-nav-buttons class="nav-title-slide-ios7 bar-assertive" side="left">
+    <a class="button button-clear icon light" ng-click="goPreView()"><i class="ion-chevron-left"></i>&nbsp;</a>
+  </ion-nav-buttons>
+  <ion-nav-buttons  class="nav-title-slide-ios7 bar-assertive" side="right">
+    <a ng-if="groupModel.join == 1" class="button button-clear icon light" href="#/app/minegroup/{{groupModel.circle.id}}/{{groupModel.circle.title}}">查看评论</a>
+  </ion-nav-buttons>
+
+    <div class="tabs tabs-stable im-footer"  ng-style="MsgStyle">
+        <div class="input-wrap">
+            <div class="write">
+                <a class="tab-item " style="margin-top:2pt;" ng-click="goJoinGroup(groupModel.circle.id,groupModel)">
+                    <img class="icon" style="height:16pt;padding-bottom:2pt" src="img/pay.png">
+
+                    <p style="margin-top:-12pt">{{groupModel.join=='1'?"已加入":"加入"}}</p>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <ion-content class="has-header im-content">
+
+        <h4 class="item">
+            {{groupModel.circle.title}}
+        </h4>
+
+        <div class="item item-image">
+
+            <img height="200pt" style="padding:10pt" src="{{server_pic}}{{groupModel.circle.picPath}}
+">
+        </div>
+
+        <div style="background-color:#eeeeee;height:10pt"></div>
+
+        <div class="padding">
+            <div style="color:#036699">简介</div>
+            <div class=" reply-content" style="color:black;background:white" ng-bind-html="groupModel.circle.introduce"></div>
+
+        </div>
+        <div style="background-color:#eeeeee;height:10pt"></div>
+
+        <div class="title" style="padding:10pt;color:#036699">成员（{{groupModel.circle.members.length}}人）</div>
+        <!--<div style="margin:10pt;display:inline" ng-repeat="member in groupModel.circle.members">-->
+            <!--<img height="60pt" width="60pt" style="" src="{{server_pic}}{{member.alumnus.headPicPath}}">-->
+
+        <!--</div>-->
+        <div style="margin:6pt;display:inline" ng-repeat="member in groupModel.circle.members">
+            <img height="60pt" width="60pt" style="" src="{{server_pic}}{{member.alumnus.headPicPath}}">
+
+        </div>
+        </br>
+        </br>
+        </br>
+        </br>
+    </ion-content>
+</ion-view>

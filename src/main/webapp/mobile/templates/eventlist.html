@@ -1,0 +1,40 @@
+<ion-view view-title={{title}}>
+    <ion-nav-buttons class="nav-title-slide-ios7 bar-assertive" side="left">
+        <a class="button button-clear icon light" href="#home"><i class="ion-chevron-left"></i>&nbsp;</a>
+    </ion-nav-buttons>
+    <ion-nav-buttons class="nav-title-slide-ios7 bar-assertive" side="right">
+        <a class="button button-clear icon light" href="#/app/releaseevent">新建资讯</a>
+    </ion-nav-buttons>
+
+    <ion-content>
+        <div class="bar item-input-inset search-bg-color">
+            <div class="item-input-wrapper">
+                <input type="search" placeholder="请输入标题" ng-model="searchData.queryWords">
+                <i class="button-clear ion-ios-search" ng-click="search()"></i>
+            </div>
+        </div>
+        <ion-refresher
+                pulling-text="下拉刷新..."
+                on-refresh="doRefresh()">
+        </ion-refresher>
+        <ion-list>
+            <ion-item class="item-remove-animate item-thumbnail-left event-item" ng-repeat="new in news"
+                      type="item-text-wrap" href="#/app/eventlist/{{new.id}}">
+                <img ng-src={{server_pic}}{{new.createUser.alumnus.headPicPath}}>
+
+                <p class="summary">
+                    {{new.createUser.alumnus.realName}}
+                <span class="item-note ago" am-time-ago="topic.last_reply_at">
+                    {{new.createTime}}
+                </span>
+                </p>
+
+                <h2>{{new.title}}</h2>
+
+                <p>{{new.content}}</p>
+            </ion-item>
+        </ion-list>
+        <ion-infinite-scroll on-infinite="load_more();" distance="5%" ng-if="noMoreItemsAvailable">
+        </ion-infinite-scroll>
+    </ion-content>
+</ion-view>

@@ -1,0 +1,67 @@
+<ion-view view-title="发布资讯">
+    <ion-nav-buttons class="nav-title-slide-ios7 bar-assertive" side="left">
+        <a class="button button-clear icon light" ng-click="goPreView()"><i class="ion-chevron-left"></i>&nbsp;</a>
+    </ion-nav-buttons>
+    <ion-content>
+        <label class="item item-input">
+            标题
+            <input  style="padding-left:10pt" type="text" placeholder="输入标题(20字内)" ng-model="newData.title">
+                </label>
+        <img id="img" height="180pt" class="full-image" >
+            
+            
+            <div class=""style="margin:10pt" >
+                <button href="javascript:;" class="full-image button-bg" style="position: relative;
+                    display: block;
+                    background: none;
+                    border-radius: 3px;
+                    padding: 10px;
+                    overflow: hidden;
+                    text-decoration: none;
+                    text-indent: 0;
+                    text-align: center;
+                    font-size: 16px;">
+                    
+                    点击修改图片
+                    <input id="upimg" ngf-select="uploadFiles($file)" class="ui-form-file" type="file" name="imgFile" accept="image/*" style=" position: absolute;
+                        font-size: 100px;
+                        right: 0;
+                        top: 0;
+                        opacity: 0">
+                        </button>
+            </div>
+            
+            
+            <div class="list">
+                <label class="item item-input item-select">
+                    <div class="input-label">
+                        资讯类型
+                    </div>
+                    <select value=2 ng-model="newData.type">
+                        <option value="">请选择</option>
+                        <option selected>投融资</option>
+                        <option>思源创业</option>
+                        <option>合作商机</option>
+                        <option>互帮互助</option>
+                        <option>校友企业</option>
+                        <option>求职招聘</option>
+                        <option>新闻动态</option>
+                        <option>在水一方</option>
+                    </select>
+                </label>
+            </div>
+            
+            <div class="padding">
+                <p>简介</p>
+                <textarea class="report-content" maxlength="1000" minlength="10" placeholder="1000字以内"  ng-model="newData.content"></textarea>
+            </div>
+            
+            <div  class = "padding">
+                
+                <button class="button button-block button-bg"  ng-click="goSubmit()">创建</button>
+                
+            </div>
+            
+            <br>
+            </ion-content>
+</ion-view>

@@ -1,0 +1,55 @@
+<ion-view view-title='加入的人'>
+  <ion-nav-buttons class="nav-title-slide-ios7 bar-assertive" side="left">
+    <a class="button button-clear icon light" ng-click="goPreView()"><i class="ion-chevron-left"></i>&nbsp;</a>
+  </ion-nav-buttons>
+  <ion-content class="">
+    <ion-list>
+      <ion-item class="item-remove-animate item-icon-right" ng-repeat="mate in joinUsers" type="">
+        <img style="width:60pt;height:60pt;float:left" ng-src="{{server_pic}}{{mate.alumnus.headPicPath}}">
+        <div style="margin-left:68pt;width:80%;margin-bottom:10pt">
+          <span class="padding">{{mate.alumnus.realName}} ({{mate.alumnus.enRealName}})</span>
+          <span class=" item-note ago" style="float:left;width:100%"></span>
+                                <span class=" item-note ago" style="padding-left:8pt;padding-top:5pt;float:left"><img
+                                  style="padding-right:2pt"
+                                  width="14pt"
+                                  src="img/star_icon.png">{{mate.alumnus.title}}</span>
+
+                                                    <span class="item-note ago"
+                                                          style="padding-left:8pt;padding-top:5pt;float:left;width:100%"><a
+                                                      class=" {{mate.alumnus.sex==0?'ion-female':'ion-male'}}"></a>
+                    {{mate.alumnus.sex==0?" 女":" 男"}}</span>
+
+        </div>
+        <br/>
+        <br/>
+        <br/>
+        <div style="width:150%;background-color:#eeeeee;height:1px"></div>
+                            <span class="item-note ago" style="float:left;margin-top:10pt"> <img
+                              style="padding-right:2pt" width="16pt"
+                              src="img/tag_icon.png">{{mate.alumnus.school}}
+            <img style="padding-right:2pt;margin-left:10pt" width="14pt" src="img/text_icon.png">{{mate.alumnus.grade}}</span>
+
+                <span class="item-note ago" style="float:left;width:100%"><img style="padding-right:2pt;margin-top:3pt"
+                                                                               width="16pt" src="img/home_icon.png">{{mate.alumnus.company}}</span>
+                <span class="item-note ago" style="float:left;width:100%"><img style="padding-right:2pt;margin-top:3pt"
+                                                                               width="18pt" src="img/phone-litter.png">电话: {{mate.alumnus.phone}}</span>
+                <span class="item-note ago" style="float:left;width:100%"><img style="padding-right:2pt;margin-top:5pt"
+                                                                               width="18pt" src="img/email-litter.png">邮箱: {{mate.alumnus.email}}</span>
+        <span class="item-note ago" style="float:left;width:100%"><img style="padding-right:2pt;margin-top:5pt"
+
+      </ion-item>
+      </br>
+      </br>
+    </ion-list>
+
+
+  </ion-content>
+  <ion-footer-bar keyboard-attach style="background-color: #155ba5;">
+
+    <button class="button-clear" ng-click="sendEmail(1)" style="width:100%" text-align="center">
+      <h5 class="light">导出邮件<h5>
+    </button>
+  </ion-footer-bar>
+
+</ion-view>
+

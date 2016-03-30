@@ -1,0 +1,56 @@
+<ion-view view-title='校友资料' cache-view='false'>
+    <ion-nav-buttons class="nav-title-slide-ios7 bar-assertive" side="left">
+        <a class="button button-clear icon light" ng-click="goPreView()"><i class="ion-chevron-left"></i>&nbsp;</a>
+    </ion-nav-buttons>
+    <ion-content class="has-header">
+
+
+        <div style="width:100%;background-image:url('img/index-back.png'); background-size:100% 100%;">
+            <br/>
+            <br/>
+
+            <div align="center" class="light">
+
+                <img class="default-header" height=80pt width=80pt style="border-radius:40pt"
+                     ng-src="{{!mate.alumnus.headPicPath ? 'img/default-header.png':server_pic + mate.alumnus.headPicPath}}">
+
+                <div style="text-align:center">
+                    <span>{{mate.alumnus.realName||mate.alumnus.phone}} </span>
+                    <a  class="{{mate.alumnus.sex==0?'ion-female':'ion-male'}} fix-margin-l10"></a>
+                    {{mate.alumnus.sex==0?" 女":" 男"}}
+                </div>
+                <br/></div>
+        </div>
+
+        <div class="item " style="margin-top:10pt;padding-left:20pt">
+            <span class="item-note ago" style="float:left;"> <img style="padding-right:2pt" width="16pt"
+
+                                                                  src="img/tag_icon.png">{{mate.alumnus.school||"学校暂无"}}
+
+            <img style="padding-right:2pt;margin-left:10pt" width="14pt" src="img/text_icon.png">{{mate.alumnus.grade|| "年级暂无"}}</span>
+
+            <span class="item-note ago" style="float:left;width:100%">
+                <img style="padding-right:2pt;margin-top:3pt" width="16pt" src="img/home_icon.png">{{mate.alumnus.company|| "公司暂无"}}</span>
+            <span class="item-note ago" style="float:left;width:100%">
+                <img style="padding-right:2pt;margin-top:3pt" width="16pt" src="img/home_icon.png">{{mate.alumnus.title|| "职位暂无"}}</span>
+            <span class="item-note ago" style="float:left;width:100%"><img style="float:left; width: 16px; height: 14px; padding-right:2pt;margin-top:3pt"
+                                                                           width="18pt" src="img/phone-litter.png">电话: {{mate.alumnus.phone}}</span>
+            <span class="item-note ago" style="float:left;width:100%"><img style="padding-right:2pt;margin-top:5pt"
+                                                                           width="18pt" src="img/email-litter.png">邮箱: {{mate.alumnus.email|| "邮箱暂无"}}</span>
+            <span class="item-note ago" style="float:left;width:100%"><img style="padding-right:2pt;margin-top:5pt"
+                                                                           width="18pt" src="img/chart-litter.png">微信: {{mate.alumnus.weixin|| "微信暂无"}}</span>
+
+
+        </div>
+
+        <div class=" " style="padding:10pt;height:100%">
+            <a style="margin-top:20px;margin-bottom:20px;" class=" button button-block button-bg"
+               href="#/app/chatlist/{{mate.alumnus.phone}}/{{mate.alumnus.realName}}">发消息</a>
+            <!--<a style="margin-top:20px;margin-bottom:20px;" class=" button button-block" href="#/app/report">举报 </a>-->
+
+
+        </div>
+    </ion-content>
+
+
+</ion-view>

@@ -1,0 +1,24 @@
+<ion-view view-title="我">
+    <ion-nav-buttons class="nav-title-slide-ios7 bar-assertive" side="left">
+        <a class="button button-clear icon light" ng-click="goPreView()"><i class="ion-chevron-left"></i>&nbsp;</a>
+    </ion-nav-buttons>
+    <ion-content class="setting">
+        <ion-item class="login" style="text-align:center">
+            <h2 style="margin:10pt">邀请码</h2>
+
+            <div class="login"
+                 style="width:180pt;height:46pt;margin:auto;text-align:center;background-image:url('img/invitation-code.png');background-size:100% 100%">
+                <h1 class="padding light" style="margin:10pt">{{data}}</h1>
+            </div>
+
+        </ion-item>
+
+        <div class="button-bar bar-light">
+            <a class="button  icon-left" ng-click="inviteCode()"><i class="icon "></i>生成邀请码</a>
+            <a class="button  icon-left" clip-copy="data"  clip-click-fallback="fallback(copy)"><i class="icon "></i>复制邀请码</a>
+
+        </div>
+        <p class="item-divider item-gap padding">请将邀请码发送给你的朋友,方便她进行注册。
+        </p>
+    </ion-content>
+</ion-view>

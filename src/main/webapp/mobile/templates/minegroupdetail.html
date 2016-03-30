@@ -1,0 +1,48 @@
+<ion-view  view-title="{{title}}" >
+  <ion-nav-buttons class="nav-title-slide-ios7 bar-assertive" side="left">
+    <a class="button button-clear icon light" ng-click="goPreView()"><i class="ion-chevron-left"></i>&nbsp;</a>
+  </ion-nav-buttons>
+  <ion-content class="im-content discuss-wrap">
+    <ion-refresher
+      pulling-text="下拉刷新..."
+      on-refresh="doRefresh()">
+    </ion-refresher>
+    <div class="comment-list">
+      <div class="comment-item"  ng-repeat="gp in group" ng-click="openPersonModal(gp.commentUser.alumnus.phone)">
+        <div class="header-img">
+          <img  height=80pt width=80pt src="{{server_pic}}{{gp.commentUser.alumnus.headPicPath}}">
+        </div>
+        <div class="content discuss-content">
+          <div class="content-top">
+            <div class="title">{{gp.commentUser.alumnus.realName}}</div>
+            <span class="time">{{gp.createTime}}</span>
+          </div>
+          <p class="content-bottom">
+            {{gp.content}}
+          </p>
+        </div>
+      </div>
+    </div>
+    <ion-infinite-scroll on-infinite="load_more();"  distance="5%" ng-if="noMoreItemsAvailable">
+    </ion-infinite-scroll>
+    </br>
+    </br>
+
+  </ion-content>
+  <div class="missfreshim  footer bar-footer">
+    <div class="input">
+      <div class="write">
+        <i class="icon ion-edit"></i>
+        <input placeholder="请在此处输入内容" type="text" ng-model="replyData.content"/>
+      </div>
+
+      <div class="options">
+        <button class="send button button-clear" ng-class="{'disabled':replyData.content == undefined||replyData.content == ''}" ng-click="saveReply()">发送</button>
+      </div>
+    </div>
+  </div>
+
+</ion-view>
+
+
+

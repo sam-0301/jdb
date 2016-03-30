@@ -1,0 +1,55 @@
+<ion-view view-title="活动">
+  <ion-nav-buttons class="nav-title-slide-ios7 bar-assertive" side="left">
+    <a class="button button-clear icon light" href="#home"><i class="ion-chevron-left"></i>&nbsp;</a>
+  </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+        <a class="button button-icon icon  light" href="#/app/releaseactivity">新建活动</a>
+    </ion-nav-buttons>
+    <ion-content class="fix-content">
+        <ion-list>
+            <div class="bar item-input-inset search-bg-color">
+                <div class="item-input-wrapper">
+                    <input type="search" placeholder="请输入标题" ng-model="searchData.queryWords">
+                    <i class="button-clear ion-ios-search" ng-click="searchKeyWords()"></i>
+                </div>
+            </div>
+            <ion-refresher
+                    pulling-text="下拉刷新..."
+                    on-refresh="doRefresh()">
+            </ion-refresher>
+
+
+            <ion-item class="" ng-repeat="activity in activitys" href="#/app/activity/{{activity.id}}">
+                <div style="background-image:url('img/action_bg.png'); background-size:100% 100%; width:100%; height:108pt">
+                    <img style="float:right;margin-right:0pt;margin-top:27pt" width="60pt"
+                             src="img/{{activity.state}}.png">
+
+                    <div style="text-align:center;margin-left:50pt;">
+                        <h2 class="light" style="padding:5pt;overflow:hidden;
+                                text-overflow: ellipsis;
+                                white-space: nowrap;">{{activity.week}}</h2>
+                    </div>
+
+                    <h2 class="title" style="padding:5pt;margin-top:5pt;overflow:hidden;
+                            text-overflow: ellipsis;
+                            white-space: nowrap;">{{activity.title}}</h2>
+
+
+                    <span class="item-note ago"
+                          style="float:left;width:100%;margin-top:{{activity.state!=''?-20:-10}}pt;padding:5pt">{{activity.address}}</span>
+                        <span class="item-note ago" style="float:left;padding-left:5pt">{{activity.startTime}}开始
+                        </span>
+                        
+                        <span class="item-note ago" style="float:right;padding-left:5pt;padding-right:10pt">
+                            {{activity.joinCount}}人报名</span>
+                </div>
+
+            </ion-item>
+
+            <ion-infinite-scroll on-infinite="load_more();" distance="5%" ng-if="noMoreItemsAvailable">
+            </ion-infinite-scroll>
+
+        </ion-list>
+
+    </ion-content>
+</ion-view>

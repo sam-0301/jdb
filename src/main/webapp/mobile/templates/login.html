@@ -1,0 +1,272 @@
+<ion-view class="login-view-wrap" view-title="登录"
+          style="width:100%;background-image:url('img/login-back.png'); background-size:100% 100%;">
+    <ion-content id="home.html">
+            <div class="" align="center" style="margin-top:30pt;vertical-align:middle;text-align:center; align:center">
+                <img height=80pt/>
+        </div>
+        <div class="list card" style="margin:20pt;border-radius: 10px;text-align:center">
+            <div class="item item-divider ">交大邦登录</div>
+            <div class="item item-body">
+
+
+                <label class="item item-input">
+                    <img width="32pt" class="light" style="padding-right:10pt" src="img/icon_user.png">
+
+
+                    <input type="text" required id="usename" placeholder="请输入手机号" ng-model="loginData.username">
+                </label>
+                <label class="item item-input light">
+                    <img width="32pt" style="padding-right:10pt" src="img/icon_password.png">
+                    <input type="password" placeholder="请输入密码" ng-model="loginData.password">
+                </label>
+
+                <a style="margin-top:20px;margin-bottom:20px;" class=" button button-block button-bg"
+                   ng-click="goState(1)">登 录</a>
+
+                <div class="item item-input label-login">
+                    <a ui-sref="novel">立即注册</a>
+                    <a ui-sref="music">忘记密码</a>
+                </div>
+            </div>
+        </div>
+
+
+    </ion-content>
+
+</ion-view>
+
+<script id="music.html" type="text/ng-template">
+    <!-- ion-view 的title 属性值将显示在导航栏中 -->
+    <ion-view view-title="忘记密码">
+        <ion-content class="forget-pwd-wrap">
+            <form ng-submit="doLogin()" class="register-form">
+                <div class="list" style="margin-top:20pt">
+                    <div class="item item-input item-button-right">
+
+                        <img width="32pt" class="light" style="padding-right:10pt" src="img/icon_user.png">
+                        <input id="stationInput" class="phone" type="text" required maxlength="11" minlength="11"
+                               placeholder="请填写手机号" ng-model="loginData.username">
+
+
+                    </div>
+                    <label class="item item-input" ng-class="{true:'pwd-tip'}[!registerForm.passowrd.$valid]">
+                        <img width="32pt" style="padding-right:10pt" src="img/icon_password.png">
+                        <input class="fontsize13" type="password" ng-pattern="/^[0-9a-zA-Z_]{6,16}$/"
+                               required minlength="6" maxlength="16" placeholder="请输入密码（6-16位数字、字母或下划线）"
+                               ng-model="loginData.password">
+                    </label>
+
+                    <label class="item item-input">
+                        <img width="32pt" style="padding-right:10pt" src="img/icon_password.png">
+                        <input type="password" id="password" placeholder="请确认密码" ng-model="loginData.configpassword">
+                    </label>
+
+                    <div class="item item-input ">
+
+                        <img width="32pt" style="padding-right:10pt" src="img/icon-code.png">
+                        <input id="stationInput" type="text" placeholder="请输入验证码" ng-model="loginData.verifyCode">
+
+
+                        <div class="" style="margin-right:10pt">
+                            <a class="button button-small" id="sendcode" ng-click="sendCode(1)">{{sendCodeText}}</a>
+                        </div>
+                    </div>
+
+
+                    <div class="item">
+                        <a class="button button-block button-bg" ng-click="changePwd(1)">确定</a>
+                    </div>
+                    <div class="button-bar bar-light">
+
+
+                        <!-- <a class="button">Third</a> -->
+                    </div>
+                </div>
+            </form>
+        </ion-content>
+    </ion-view>
+</script>
+<script id="novel.html" type="text/ng-template">
+    <ion-view title="注册">
+        <ion-content>
+                <div class="list">
+                    <form name="registerForm" id="registerForm" novalidate class="register-form">
+                        <div class="list" style="margin-top:20pt">
+                            <label class="item item-input">
+                                <img width="32pt" style="padding-right:10pt" src="img/icon_user.png">
+                                <input class="phone" type="text" required maxlength="11" minlength="11"
+                                       placeholder="请填写手机号" ng-model="loginData.username">
+                            </label>
+                            <label class="item item-input" ng-class="{true:'pwd-tip'}[!registerForm.passowrd.$valid]">
+                                <img width="32pt" style="padding-right:10pt" src="img/icon_password.png">
+                                <input type="password" name="password" ng-pattern="/^[0-9a-zA-Z_]{6,16}$/" required
+                                       minlength="6" maxlength="16" placeholder="请输入密码（6-16位数字、字母或下划线）"
+                                       ng-model="loginData.password">
+                            </label>
+                            <label class="item item-input">
+                                <img width="32pt" style="padding-right:10pt" src="img/icon_password.png">
+                                <input type="password" required placeholder="请确认密码" ng-model="loginData.configpassword">
+                            </label>
+
+                            <label class="item item-input">
+                                <img width="32pt" style="padding-right:10pt" src="img/icon-invitioncode.png">
+                                <input type="text" placeholder="请输入邀请码" ng-model="loginData.invitateCode">
+                            </label>
+
+                            <div class="item item-input ">
+
+                                <img width="32pt" style="padding-right:10pt" src="img/icon-code.png">
+                                <input type="text" placeholder="请输入验证码" ng-model="loginData.verifyCode">
+                                <!--<a class="button button-light " style="margin-right:10pt" id="sendcode" ng-click="sendCode(1)">发送验证码</a>-->
+                                <div class="" style="margin-right:10pt">
+                                <a class="button button-small" ng-click="sendCode(1)">{{sendCodeText}}</a>
+                            </div>
+                            </div>
+
+                            <div class="padding" style="margin:10pt">
+                                <!--<a class="button button-block button-bg"   ng-click="goRegister(1)">提交</a>-->
+                                <input type="submit" value="完成" class="button button-block button-bg"
+                                       ng-click="goRegister(1)"/>
+                            </div>
+
+                            <div class="button-bar bar-light">
+                            </div>
+                        </div>
+                    </form>
+                  </div>
+        </ion-content>
+
+    </ion-view>
+</script>
+
+
+<script id="info.html" type="text/ng-template">
+    <ion-view title="资料">
+        <ion-content>
+
+            <div align="center" class="light" style="margin-top:20pt">
+                <img id="img" width=80pt height=80pt style="border-radius:30pt"
+                     ng-src="{{server_pic}}{{my.alumnus.headPicPath}}">
+
+                <div class="show" id="div"></div>
+                <a href="javascript:;" class="padding" style="text-decoration:none;position: relative;
+display: block;
+<!--background: none;-->
+border-radius: 3px;
+padding: 10px;
+overflow: hidden;
+<!--color: #FFF;-->
+text-decoration: none;
+text-indent: 0;
+text-align: center;
+font-size: 16px; }">
+                    <i class="add-icons"></i>
+                    点击修改头像
+
+                    <input id="upimg" ngf-select="uploadFiles($file)" class="ui-form-file" type="file" name="imgFile"
+                           accept="image/*" style=" position: absolute;
+font-size: 100px;
+right: 0;
+top: 0;
+opacity: 0">
+                </a>
+
+                <br>
+            </div>
+
+            <div class="item item-divider" style="color:#036699">基本信息</div>
+            <label class="item item-input lb-user-name">
+
+                <span class="item button-clear" style="color:#EE0000">*</span>
+
+                <span class="input-label">姓名</span>
+                <input type="text" placeholder="请输入姓名" ng-model="infoData.realName">
+            </label>
+
+            <label class="item item-input">
+
+                <span class="item button-clear" style="padding-left:8pt;color:#EE0000"></span>
+
+                <span class="input-label">英文名</span>
+                <input type="text" placeholder="请输入英文名" ng-model="infoData.enRealName">
+            </label>
+
+            <label class="item lb-user-name sex">
+
+                <span class=" button-clear" style="color:#EE0000">*</span>
+
+                <span class="" style="margin-left:-5pt;margin-right:60pt">性别</span>
+
+                <label style="text-align:center" class="label_radio r_on">
+                    <input type="radio" value="1" checked="checked" id="radio-01" name="sample-radio"
+                           ng-model="infoData.sex"/>
+                    男 </label>
+
+                <label style="text-align:center" class="label_radio r_off">
+                    <input type="radio" value="0" id="radio-02" name="sample-radio" ng-model="infoData.sex"/>
+                    女 </label>
+
+            </label>
+
+
+            <label class="item item-input">
+                <span class="item button-clear" style="padding-left:8pt;color:#EE0000"></span>
+                <span class="input-label">邮箱</span>
+                <input type="text" placeholder="请输入邮箱" ng-model="infoData.email">
+            </label>
+
+            <label class="item item-input">
+                <span class="item button-clear" style="padding-left:8pt;color:#EE0000"></span>
+                <span class="input-label">微信</span>
+                <input type="text" placeholder="请输入微信号" ng-model="infoData.weixin">
+            </label>
+
+
+            <div class="item item-divider" style="color:#036699">学校信息</div>
+            <label class="item item-input">
+                <span class="item button-clear" style="color:#EE0000">*</span>
+                <span class="input-label">学校</span>
+                <span ng-click="openSchoolList()">{{infoData.school||'请输入学校'}}</span>
+            </label>
+
+            <label class="item item-input">
+                <span class="item button-clear" style="color:#EE0000">*</span>
+                <span class="input-label">院系</span>
+                <input type="text" placeholder="请输入院系信息" ng-model="infoData.department">
+            </label>
+
+            <label class="item item-input">
+                <span class="item button-clear" style="color:#EE0000">*</span>
+                <span class="input-label">年级</span>
+                <input type="text" placeholder="请输入年级" ng-model="infoData.grade">
+            </label>
+
+
+            <div class="item item-divider" style="color:#036699">工作信息</div>
+            <label class="item item-input">
+                <span class="item button-clear" style="color:#EE0000">*</span>
+                <span class="input-label">公司</span>
+                <input type="text" placeholder="请输入公司名称" ng-model="infoData.company">
+            </label>
+
+
+            <label class="item item-input">
+                <span class="item button-clear" style="padding-left:8pt;color:#EE0000"></span>
+                <span class="input-label">职位</span>
+                <input type="text" required="required" placeholder="请输入职位" ng-model="infoData.title">
+            </label>
+
+
+            <div class="padding">
+
+                <button class="button button-block button-bg" ng-click="goSubmit()">提交</button>
+
+            </div>
+
+
+            </div>
+
+
+        </ion-content>
+    </ion-view>
+</script>

@@ -1,0 +1,36 @@
+<ion-view view-title="{{chatName}}">
+  <ion-nav-buttons class="nav-title-slide-ios7 bar-assertive" side="left">
+    <a class="button button-clear icon light" ng-click="goPreView()"><i class="ion-chevron-left"></i>&nbsp;</a>
+  </ion-nav-buttons>
+  <ion-content scrollbar-x="false" scrollbar-y="false" class="missfreshim im-content has-footer" delegate-handle="mainScroll">
+    <ion-refresher
+      pulling-text="下拉刷新..."
+      spinner="lines"
+      on-refresh="doRefresh()">
+    </ion-refresher>
+
+    <ion-list class="chat-list-wrap">
+
+      <ion-item class="item-remove-animate item-avatar"
+                type="item-text-wrap"
+                href="#" ng-repeat="data in messageList track by $index" ng-class="{true:'sender'}[data.isSender == 1]">
+        <img ng-src="{{server_pic}}{{data.sender.alumnus.headPicPath}}">
+        <!--<h2>{{data.sender.alumnus.realName}}</h2>-->
+        <p class="chat-message">{{data.content}}</p>
+        <div class="clear"></div>
+        <div class="time">{{data.createTime | date:'yyyy-MM-dd HH:mm:ss'}}</div>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+  <div class="missfreshim footer" style="display: block">
+    <div class="input">
+      <div class="write">
+        <i class="icon ion-edit"></i>
+        <input placeholder="此处留言" type="text" ng-model="form.message"/>
+      </div>
+      <div class="options">
+        <button class="send button button-clear" ng-class="{'disabled':form.message == ''}" ng-click="sendMessage()">发送</button>
+      </div>
+    </div>
+  </div>
+</ion-view>

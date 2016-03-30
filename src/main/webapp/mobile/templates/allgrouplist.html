@@ -1,0 +1,56 @@
+<ion-view view-title="所有圈子">
+    <ion-nav-buttons class="nav-title-slide-ios7 bar-assertive" side="left">
+        <a class="button button-clear icon light" ng-click="goPreView()"><i class="ion-chevron-left"></i>&nbsp;</a>
+    </ion-nav-buttons>
+    <ion-content class="fix-content">
+        <div class="bar item-input-inset search-bg-color">
+            <div class="item-input-wrapper">
+                <input type="search" placeholder="请输入标题" ng-model="searchData.queryWords">
+                <i class="button-clear ion-ios-search" ng-click="searchKeyWords()"></i>
+            </div>
+        </div>
+
+
+        <ion-refresher
+                pulling-text="下拉刷新..."
+                on-refresh="doRefresh()">
+        </ion-refresher>
+
+        <ion-list>
+            <ion-item class="" collection-repeat="gp in group" ng-click="goDetail(gp.circle.id)"  href="">
+                <div class="card"
+                     style="border-radius: 10px; margin: 0;">
+                    <div class="item item-divider ">
+                        <p class="item-note" style="float:left; max-width:220px;">{{gp.circle.title}}</p>
+
+                        <p class="button-bg" style="color: #006598; float:right">{{gp.circle.members.length || 0}}人</p>
+                        <img class="button-bg" height="16pt" style="padding-right:5pt;float:right"
+                             src="img/number-people.png">
+
+
+                    </div>
+                    <div class="item item-body button-right">
+                        <label class=" item-input light no-padding">
+                            <img class="full-image" style="min-width: 319px;" height="150pt"
+                                 src={{server_pic}}{{gp.circle.picPath}}>
+                        </label>
+
+                        <button style="float:right;margin-top:5pt;padding-left:10pt;padding-right:10pt"
+                                class=" button button-small    button-bg"
+                                ng-click="goJoinGroup($event,gp,gp.circle)">{{gp.join=="1"?"已加入":"加入"}}
+                        </button>
+
+
+                    </div>
+                </div>
+            </ion-item>
+
+
+        </ion-list>
+        <ion-infinite-scroll on-infinite="load_more();" distance="5%" ng-if="noMoreItemsAvailable">
+        </ion-infinite-scroll>
+
+    </ion-content>
+</ion-view>
+
+

@@ -1,0 +1,155 @@
+<ion-view view-title="个人信息">
+    <ion-nav-buttons class="nav-title-slide-ios7 bar-assertive" side="left">
+        <a class="button button-clear icon light" ng-click="goPreView()"><i class="ion-chevron-left"></i>&nbsp;</a>
+    </ion-nav-buttons>
+    <ion-content>
+        <div class="list person-list-wrap">
+            <div style="width:100%; background-size:100% 100%;" class="person-wrap">
+
+                <div align="center" class="light" style="background-image:url('img/index-back.png');">
+                    <br/>
+                    <br/>
+
+                    <img id="img" width=80pt height=80pt style="border-radius:30pt"
+                         ng-src="{{server_pic}}{{my.alumnus.headPicPath}}">
+
+                    <div class="show" id="div"></div>
+                    <a href="javascript:;" class="padding" style="position: relative;
+                            display: block;
+                            background: none;
+                            border-radius: 3px;
+                            padding: 10px;
+                            overflow: hidden;
+                            color: #FFF;
+                            text-decoration: none;
+                            text-indent: 0;
+                            text-align: center;
+                            font-size: 16px; }">
+                        <i class="add-icons"></i>
+                        点击修改头像
+
+                        <input id="upimg" ngf-select="uploadFiles($file)" class="ui-form-file" type="file"
+                               name="imgFile" accept="image/*" style=" position: absolute;
+                                font-size: 100px;
+                                right: 0;
+                                top: 0;
+                                opacity: 0">
+                    </a>
+
+                    <br>
+                </div>
+                <div style="background-color:#eeeeee;height:10pt"></div>
+
+                <div class="item" style="color:#036699">基本信息</div>
+                <!--<label class="item item-input" ng-click="showPopup('名字','realName')">-->
+                <!--<span class="input-label">姓名</span>-->
+
+                <!--<div class="badge" style="margin-right:5pt;margin-top:-2pt">{{my.alumnus.realName}}</div>-->
+                <!--<i style="margin-right:5pt;margin-right:10pt" ng-if="allowchange" class="icon ion-chevron-right ion-ios-compose-outline"></i>-->
+
+                <!--</label>-->
+                <label class="item item-input item-icon-right" ng-click="showPopup('姓名','realName')">
+                    <span class="input-label">姓名</span>
+
+                    <div class="badge" style="margin-right:5pt;margin-top:-2pt">{{my.alumnus.realName}}</div>
+                    <i style="margin-right:10pt" ng-if="allowchange" class="icon ion-chevron-right ion-ios-compose-outline"></i>
+
+
+                </label>
+                <label class="item item-input item-icon-right" ng-click="showPopup('英文名','enRealName')">
+                    <span class="input-label">英文名</span>
+
+                    <div class="badge" style="margin-right:5pt;margin-top:-2pt">{{my.alumnus.enRealName}}</div>
+                    <i style="margin-right:10pt" ng-if="allowchange" class="icon ion-chevron-right ion-ios-compose-outline"></i>
+
+
+                </label>
+
+                <label class="item item-icon-right" ng-click="setSex('性别','sex')">
+                    <span class="" style="margin-right:60pt">性别</span>
+                    <span class="badge" style="margin-right:5pt;margin-top:0pt">{{my.alumnus.sex==1?'男':'女'}}</span>
+                    <i style="margin-right:10pt" ng-if="allowchange" class="icon ion-chevron-right ion-ios-compose-outline"></i>
+
+
+                </label>
+
+
+                <label class="item item-input item-icon-right" ng-click="showPopup('邮箱','email')">
+                    <span class="input-label">邮箱</span>
+
+                    <div class="badge" style="margin-right:5pt;margin-top:-2pt">{{my.alumnus.email}}</div>
+                    <i style="margin-right:10pt" ng-if="allowchange" class="icon ion-chevron-right ion-ios-compose-outline"></i>
+                </label>
+
+                <label class="item item-input item-icon-right" ng-click="showPopup('微信','weixin')">
+                    <span class="input-label">微信</span>
+
+                    <div class="badge" style="margin-right:5pt;margin-top:-2pt">{{my.alumnus.weixin}}</div>
+                    <i style="margin-right:10pt" ng-if="allowchange" class="icon ion-chevron-right ion-ios-compose-outline"></i>
+
+                </label>
+
+                <div style="background-color:#eeeeee;height:10pt"></div>
+
+                <p class="item" style="color:#036699">学校信息</p>
+                <label class="item item-input item-icon-right" ng-click="openSchoolList()">
+
+                    <span class="input-label">学校</span>
+                      <div class="badge" style="margin-right:5pt;margin-top:-2pt">{{my.alumnus.school}}</div>
+                    <i style="margin-right:10pt" ng-if="allowchange" class="icon ion-chevron-right ion-ios-compose-outline"></i>
+
+                </label>
+
+                <label class="item item-input item-icon-right" ng-click="showPopup('院系','department')">
+
+                    <span class="input-label">院系</span>
+
+                    <div class="badge" style="margin-right:5pt;margin-top:-2pt">{{my.alumnus.department}}</div>
+                    <i style="margin-right:10pt" ng-if="allowchange" class="icon ion-chevron-right ion-ios-compose-outline"></i>
+
+                </label>
+
+                <label class="item item-input item-icon-right" ng-click="showPopup('年级','grade')">
+
+                    <span class="input-label">年级</span>
+
+                    <div class="badge" style="margin-right:5pt;margin-top:-2pt">{{my.alumnus.grade}}</div>
+                    <i style="margin-right:10pt" ng-if="allowchange" class="icon ion-chevron-right ion-ios-compose-outline"></i>
+
+                </label>
+
+                <div style="background-color:#eeeeee;height:10pt"></div>
+
+                <div class="item " style="color:#036699">工作信息</div>
+                <label class="item item-input item-icon-right" ng-click="showPopup('公司名称','company')">
+                    <span class="input-label">公司名称</span>
+
+                    <div class="badge" style="margin-right:5pt;margin-top:-2pt">{{my.alumnus.company}}</div>
+                    <i style="margin-right:10pt" ng-if="allowchange" class="icon ion-chevron-right ion-ios-compose-outline"></i>
+                </label>
+
+
+                <label class="item item-input item-icon-right" ng-click="showPopup('职位','title')">
+                    <span class="input-label">职位</span>
+
+                    <div class="badge" style="margin-right:5pt;margin-top:-2pt">{{my.alumnus.title}}</div>
+                    <i style="margin-right:10pt" ng-if="allowchange" class="icon ion-chevron-right ion-ios-compose-outline"></i>
+
+                </label>
+                <div style="background-color:#eeeeee;height:10pt"></div>
+
+                <div class="item "style="color:#036699">安全信息</div>
+                <a class="item item-input item-icon-right" href="#/app/changephone/{{my.alumnus.phone}}">
+                    <span class="input-label">电话</span>
+
+                    <div class="badge" style="margin-right:5pt;margin-top:-4pt">{{my.alumnus.phone}}</div>
+                    <i style="margin-right:10pt" ng-if="allowchange" class="icon ion-chevron-right ion-ios-compose-outline"></i>
+                </a>
+                <br>
+
+            </div>
+
+
+    </ion-content>
+
+</ion-view>

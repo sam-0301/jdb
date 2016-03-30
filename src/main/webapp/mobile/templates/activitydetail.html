@@ -1,0 +1,204 @@
+<ion-view view-title='活动详情' cache-view='false'>
+    <ion-nav-buttons class="nav-title-slide-ios7 bar-assertive" side="left">
+        <a class="button button-clear icon light" ng-click="goPreView()"><i class="ion-chevron-left"></i>&nbsp;</a>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+        <a class="button button-icon icon  light" href="#/app/report/{{activity.id}}/{{activity.title}}/活动">举报</a>
+    </ion-nav-buttons>
+    <ion-content class="has-header has-footer im-content" style="background:white">
+        <div class="padding item-avatar item-gap">
+            <h4 class="title">{{activity.title}}</h4>
+        </div>
+        <div class="item item-avatar item-gap" style="background:whrite">
+            <img src={{server_pic}}{{activity.createUser.alumnus.headPicPath}}>
+            <a href="#/app/schoolmatelist/{{activity.createUser.alumnus.phone}}" style="text-decoration:none">
+                {{activity.createUser.alumnus.realName}}
+            </a>
+            <div>
+                <p style="float:left;">{{activity.createTime}}</p>
+
+                <p style="float:right;">{{activity.pv}}人浏览</p>
+            </div>
+        </div>
+        <div class="padding light-color">
+            <img width="100%" height="200pt" src={{server_pic}}{{activity.picPath}}>
+
+            <div class="reply-content" ng-bind-html="news.content"></div>
+            <div class="list card" style="border-radius: 10px;">
+                <div class="item item-divider light-color">
+                    <i class=" positive ion-navigate" style="margin-right:5pt"></i>
+                    举办地址: {{activity.city}} {{activity.address}}
+                </div>
+                <div class="item item-divider light-color">
+                    <i class=" positive ion-ios-stopwatch" style="margin-right:5pt"></i>
+                    举办时间: {{activity.startTime}}
+                </div>
+                <div class="item item-divider light-color">
+                    <i class=" positive ion-power" style="margin-right:5pt"></i>
+
+                    结束时间: {{activity.endTime}}
+                </div>
+                <div class="item item-divider light-color">
+                    <i class=" positive ion-ios-people" style="margin-right:5pt"></i>
+                    人数上限: {{activity.personLimit}} 人
+                </div>
+                <div class="item item-divider light-color">
+                    <i class=" positive ion-android-alert" style="margin-right:5pt"></i>
+                    报名截止时间: {{activity.closeTime}}
+                </div>
+
+            </div>
+        </div>
+        <div class="padding" style="margin-top:-20pt">
+            <span style="color:#036699">活动介绍<span>
+            <div class=" light-color reply-content" style="color:black;background:white">
+                <pre>{{activity.activityDesc}}</pre>
+            </div>
+        </div>
+        <div style="background-color:#eeeeee;height:10pt"></div>
+
+        <div class="padding">
+            <span style="color:#036699">核心话题<span>
+              <div class=" light-color reply-content" style="color:black;background:white">
+                  <pre>{{activity.topic}}</pre>
+              </div>
+        </div>
+        <div style="background-color:#eeeeee;height:10pt"></div>
+
+        <div class="padding">
+    <span style="color:#036699">参会费用<span>
+        <div class=" light-color reply-content" style="color:black;background:white">
+            <pre>{{activity.joinFee}}</pre>
+        </div>
+        </div>
+        <div style="background-color:#eeeeee;height:10pt"></div>
+
+        <div class="padding">
+    <span style="color:#036699">其他<span>
+        <div class=" light-color reply-content" style="color:black;background:white">
+            <pre>{{activity.otherInfo}}</pre>
+        </div>
+        </div>
+
+        <div class="reply-content" ng-bind-html="news.content"></div>
+        <div class="list card" style="border-radius: 10px;">
+            <div class="item item-divider light-color">
+                <img height="15pt" style="margin-right:5pt" src="img/contact-person.png">
+                联系人:{{activity.contactMan}}
+            </div>
+            <div class="item item-divider light-color">
+                <img height="15pt" style="margin-right:5pt" src="img/photo-blue.png">
+                电话:
+                <a href="tel://1110">{{activity.contactPhone}}</a>
+            </div>
+            <div class="item item-divider light-color">
+                <img height="15pt" style="margin-right:5pt" src="img/email.png">
+                <!--E-Mail:{{activity.contactEmail}}-->
+                E-Mail:
+                <!--<a href="mailto://{{activity.contactEmail}}">{{activity.contactEmail}}</a>-->
+                <input value={{activity.contactEmail}} type="button" class="button-clear"
+                       onClick="parent.location='mailto:724206429@qq.com'">
+
+            </div>
+            <!--<INPUT TYPE="button" VALUE="点击这里给我发邮件" onClick="parent.location='mailto:iazxq@sohu.com'">-->
+
+        </div>
+
+
+        <div class="title" style="padding:10pt"><a class="title"
+                                                   style="" ng-click="goMember(activity)" ">成员（{{activity.joinUsers.length}}人）</a>
+        </div>
+        <a style="margin:10pt" ng-repeat="member in activity.joinUsers" href="#/app/schoolmatelist/{{member.phone}}">
+            <img height="60pt" width="60pt" style="" src="{{server_pic}}{{member.alumnus.headPicPath}}">
+        </a>
+
+
+        <ion-list class="replies">
+            <!--            <ion-item ng-if="1">-->
+            <!--                暂无评论{{news.createUser.alumnus.headPicPath}}-->
+            <!--            </ion-item>-->
+            <ion-item class=" item-avatar" ng-click="showPopup(1)" ng-repeat="comment in comments">
+                <img ng-src={{server_pic}}{{comment.commentUser.alumnus.headPicPath}} reset-img>
+
+                <p>
+                    <a href="#/app/schoolmatelist/{{comment.commentUser.alumnus.phone}}"
+                       id="reply" style="text-decoration:none">
+                        {{comment.commentUser.alumnus.realName}}
+                    </a>
+                    <span class="item-note">{{comment.createTime}}
+                    </span>
+                    <span class="item-note cnode" ng-if="reply.ups.length > 0">
+                        <!--                        <i class="icon ion-thumbsup"></i> {{reply.ups.length}} &nbsp;-->
+                        <!--                    </span>-->
+
+                </p>
+
+                <div style="color:#036699" ng-if="comment.parentAtvCmt!=undefined">
+                    @{{comment.parentAtvCmt.commentUser.alumnus.realName}}
+                </div>
+                <div class="reply-content" ng-bind-html="comment.content"></div>
+                <div class="">
+                    <!--                            <a class="button-small button-block" style="display:inline;" href="#/app/report">-->
+                    <!--                                举报-->
+                    <!--                            </a>-->
+
+                    <a class="tab-item" style="float:right;" ng-click="saveReplyOther(comment.id,comment.commentUser.id)">
+                        回复
+                        <!--                                ({{comment.subNewsCmt.length>0?comment.subNewsCmt.length:0}})-->
+                    </a>
+                    <a class="tab-item" style="float:right;margin-right:20pt" ng-click="saveLike(comment.id)">
+                        <img height="12pt" src="img/heart-red.png">
+                        {{comment.likeCount}}
+
+                    </a>
+                </div>
+                <div class="item item-avatar" ng-click="showPopup(1)" ng-repeat="subNewsCmt in comment.subNewsCmt"
+                     style="margin-left:-20pt;border:0">
+                    <img ng-src={{server_pic}}{{subNewsCmt.commentUser.alumnus.headPicPath}} reset-img>
+
+                    <p>
+
+                        <a href="#/app/schoolmatelist/{{subNewsCmt.commentUser.alumnus.phone}}" id="reply"
+                           style="text-decoration:none">
+                            {{subNewsCmt.commentUser.alumnus.realName}}
+                        </a>
+                                <span class="item-note">{{subNewsCmt.createTime}}
+                                </span>
+                                <span class="item-note cnode" ng-if="reply.ups.length > 0">
+                    </p>
+
+                    <div class="reply-content" ng-bind-html="subNewsCmt.content"></div>
+                    <div class="">
+
+                        <a class="tab-item" style="float:right;" ng-click="saveReplyOther(subNewsCmt.id)">
+                            回复
+                        </a>
+                        <a class="tab-item" style="float:right;margin-right:20pt" ng-click="saveLike(subNewsCmt.id)">
+                            <img height="12pt" src="img/heart-red.png">
+                            {{subNewsCmt.likeCount}}
+
+                        </a>
+                    </div>
+
+                </div>
+
+
+            </ion-item>
+        </ion-list>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+
+    </ion-content>
+    <div class="tabs tabs-stable tabs-icon-top">
+        <a class="tab-item padding " style="margin-top:-3pt" ng-click="saveReply()">
+            <img class="icon" style="height:16pt;padding-bottom:2pt" src="img/comment.png">评论
+        </a>
+        <a class="tab-item padding " style="margin-top:-3pt" ng-click="signUp()">
+            <img class="icon" style="height:16pt;padding-bottom:2pt" src="img/end-registration.png">{{join=="1"?"已报名":"报名"}}
+        </a>
+    </div>
+
+
+</ion-view>

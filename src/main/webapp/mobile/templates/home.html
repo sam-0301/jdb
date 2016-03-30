@@ -1,0 +1,118 @@
+<ion-view view-title="交大邦">
+    <ion-nav-buttons side="left">
+        <button class="button button-icon button-clear ion-navicon button-light" menu-toggle="left"></button>
+    </ion-nav-buttons>
+
+    <ion-nav-buttons side="right">
+        <a class="button button-icon icon  light" href="#/app/chatlist">
+            <img height="20pt" style="margin-top:6pt" src="img/mes-icon.png">
+        </a>
+    </ion-nav-buttons>
+    <ion-content class="home-content">
+        <div class=" sroll-content">
+            <ion-slide-box delegate-handle="home-banner-slide" class="home-banner-wrap" does-continue="true" show-pager="true" auto-play="true"
+                           active-slide="index" pager-click="go(index)">
+                <ion-slide ng-repeat="item in data.focusList">
+                    <div class="banner-item-img" ng-click="goDetail(item)">
+                        <img style="width: 100%" class="slide-img" ng-src="{{server_pic + item.picpath}}"/>
+                    </div>
+                </ion-slide>
+            </ion-slide-box>
+
+            <ion-slide-box id="slide-box" show-pager="false" style="margin-top:5px;">
+                <ion-slide>
+                    <div class="row">
+                        <div class="home-col-wrap col-40 " ng-click="eventList('投融资')">
+                            <img height="54pt" src="img/icon-investment.png">
+
+                            <div style="margin-top:-10pt">投融资</div>
+                        </div>
+                        <div class="home-col-wrap col-30" ng-click="eventList('思源创业')">
+                            <img height="54pt" src="img/icon-entrepreneurship.png">
+
+                            <div style="margin-top:-10pt">思源创业</div>
+                        </div>
+                        <div class="home-col-wrap col-30" ng-click="eventList('合作商机')">
+                            <img height="54pt" src="img/icon-cooperation.png">
+
+                            <div style="margin-top:-10pt">合作商机</div>
+                        </div>
+                        <div class="home-col-wrap" ng-click="eventList('互帮互助')">
+                            <img height="54pt" src="img/icon-help.png">
+
+                            <div style="margin-top:-10pt">互帮互助</div>
+                        </div>
+                        <a ng-click="goNext(1)"><img style="margin:auto;margin-top:15pt" height="24pt"
+                                                     src="img/right-round.png"></a>
+
+                    </div>
+                </ion-slide>
+                <ion-slide delegate-handler="icon-silde-handler">
+                    <div class="row">
+                        <img ng-click="goNext(0)" style="margin:auto;margin-top:15pt" width="18pt" height="24pt"
+                             src="img/left-round.png">
+
+                        <div class="home-col-wrap col-40 " ng-click="eventList('校友企业')">
+                            <img height="54pt" src="img/alumnus.png">
+
+                            <div style="margin-top:-10pt">校友企业</div>
+                        </div>
+                        <div class="home-col-wrap col-30" ng-click="eventList('求职招聘')">
+                            <img height="54pt" src="img/job-wanted_2.png">
+
+                            <div style="margin-top:-10pt">求职招聘</div>
+                        </div>
+                        <div class="home-col-wrap col-30" ng-click="eventList('新闻动态')">
+                            <img height="54pt" src="img/journalism_3.png">
+
+                            <div style="margin-top:-10pt">新闻动态</div>
+                        </div>
+                        <div class="home-col-wrap" ng-click="eventList('在水一方')">
+                            <img height="54pt" src="img/water-side_1.png">
+
+                            <div style="margin-top:-10pt">在水一方</div>
+                        </div>
+                    </div>
+
+                </ion-slide>
+            </ion-slide-box>
+        </div>
+        <ion-item class=" item-divider item-icon-right" style="vertical-align:middle;">
+            <img height="24pt" style="float:left;padding-right:5pt" src="img/chat-circle.png">
+            圈子推荐
+            <a style="float:right;margin-right:-20pt;margin-top:1pt;text-decoration:none"
+               href="#/app/allgrouplist">更多</a>
+            <i class="icon ion-chevron-right icon-accessory" style=""></i>
+        </ion-item>
+
+        <ion-item class="item home-group-list" ng-repeat="circle in data.circleList" href="#/app/allgrouplist/{{circle.refId}}">
+            <img style="height:43pt;width:43pt;float:left" ng-src="{{server_pic}}{{circle.picpath}}">
+
+            <div style="margin-left:50pt;">
+                <h2>{{circle.title}}</h2>
+
+                <p style="height: 40px; white-space: initial;">{{circle.info}}</p>
+            </div>
+        </ion-item>
+
+        <ion-item class=" item item-divider item-icon-right">
+            <img height="22pt" style="float:left;padding-right:5pt" src="img/location-pin.png">
+            附近校友
+            <a style="float:right;margin-right:-20pt;margin-top:1pt;text-decoration:none"
+               href="#/app/schoolmatelist">更多</a>
+            <i class="icon ion-chevron-right icon-accessory" style=""></i>
+        </ion-item>
+
+        <div class="home-user">
+            <a ng-repeat="user in data.userList" class="home-col-wrap" href="#/app/schoolmatelist/{{user.phone}}"
+               style="margin-left:0pt;margin-top:10pt;float:left;text-decoration:none">
+                <img class="default-header" width=60pt height=60pt ng-src="{{!user.headpic? 'img/default-header.png':server_pic + user.headpic }}">
+                <div class="button-clear icon-left home-footer-name" style="margin-top:-10pt;">
+                    <img style="margin-left:-5pt" height="12pt" src="img/position.png">
+                    {{user.name || user.phone}}
+                </div>
+            </a>
+        </div>
+    </ion-content>
+</ion-view>
+
